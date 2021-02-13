@@ -1,17 +1,16 @@
+  
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import { Router, useRouterHistory } from 'react-router';
+import { createHashHistory } from 'history';
+
+import routes from './routes';
+
+const appHistory = useRouterHistory(createHashHistory)({ queryKey: false })
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
+	<Router history={appHistory} onUpdate={() => window.scrollTo(0, 0)}>
+		{routes}
+	</Router>,
+	document.getElementById('app')
 );
-
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
